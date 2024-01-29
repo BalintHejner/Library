@@ -1,0 +1,50 @@
+<form class="row g-3" novalidate>
+    <div class="col-md-4">
+        <label for="txtName" class="form-label">Tag neve</label>
+        <input type="text" class="form-control" name="txtName"  [(ngModel)]="name">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">&nbsp;</label>
+        <button class="btn btn-primary d-block" type="button" (click)="search()">Keresés</button>
+    </div>
+    <div class="col-md-4">
+        <label *ngSwitch="" class="form-label">&nbsp;</label>
+        <button class="btn btn-success d-block ms-auto" type="button" routerLink="/new-member">Új tag</button>
+    </div>
+</form>
+<!-- <div *ngIf="errorMessage"  class="alert alert-danger alert-dismissible fade show" role="alert">
+  {{errorMessage}}
+  <button type="button" class="btn-close" (click)="errorMessage=''" ></button>
+</div> -->
+@if (errorMessage) {
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  {{errorMessage}}
+  <button type="button" class="btn-close" (click)="errorMessage=''" ></button>
+</div>
+}
+
+
+<hr>
+<table class="table table-bordered mt-3" id="table-members">
+    <tr class="text-center">
+        <th>Olvasójegy száma</th>
+        <th>Név</th>
+        <th>Tagság kezdete</th>
+        <th>Tagság vége</th>
+    </tr>
+<!--
+    <tr *ngFor="let member of members">
+        <td >{{member.id}}</td>
+        <td>{{member.name}}</td>
+        <td>{{member.from}}</td>
+        <td>{{member.to}}</td>
+    </tr> -->
+    @for (member of members; track $index) {
+      <tr>
+        <td >{{member.id}}.</td>
+        <td>{{member.name}}</td>
+        <td>{{member.from}}</td>
+        <td>{{member.to}}</td>
+    </tr>
+    }
+</table>

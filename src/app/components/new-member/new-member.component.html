@@ -1,0 +1,28 @@
+<h1 class="text-center">Új tag rögzítése</h1>
+
+<form class="row g-3 mb-3">
+    <div class="col-md-8">
+        <label for="txtName" class="form-label">Tag neve</label>
+        <input type="text" class="form-control" id="txtName" placeholder="Minta Géza" [(ngModel)]="member.name" name="name">
+    </div>
+    <div class="col-md-4">
+        <label for="txtBirthDate" class="form-label">Születési dátum</label>
+        <input type="date" class="form-control" id="txtBirthDate" [(ngModel)]="member.birthDate" name="birthDate">
+    </div>
+    <div class="col-md-8">
+        <label for="txtEmail" class="form-label">E-mail</label>
+        <input type="email" class="form-control" id="txtEmail" placeholder="minta.geza@email.hu" [(ngModel)]="member.email" name="email">
+    </div>
+    <div class="col-md-4">
+        <label for="txtMobil" class="form-label">Mobiltelefon</label>
+        <input type="text" class="form-control" id="txtMobil" placeholder="+36701234567" [(ngModel)]="member.mobil" name="mobil">
+    </div>
+</form>
+<div *ngIf="errorMessage"  class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{errorMessage}}
+    <button type="button" class="btn-close" (click)="errorMessage=''" ></button>
+</div>
+<div class="mt-3 text-center">
+    <button type="button" class="btn btn-primary" (click)="save()">Mentés</button>
+</div>
+

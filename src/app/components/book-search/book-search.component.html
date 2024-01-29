@@ -1,0 +1,54 @@
+<form class="row g-3" novalidate>
+    <div class="col-md-4">
+        <label for="txtAuthor" class="form-label">Szerző</label>
+        <input type="text" class="form-control" name="author" [(ngModel)]="searchModel.author">
+    </div>
+    <div class="col-md-4">
+        <label for="txtTitle" class="form-label">Könyv címe</label>
+        <input type="text" class="form-control" name="title" [(ngModel)]="searchModel.title">
+    </div>
+    <div class="col-md-4">
+        <label for="txtISBN" class="form-label">ISBN</label>
+        <input type="text" class="form-control" name="isbn" [(ngModel)]="searchModel.isbn">
+    </div>
+
+    <div class="col-md-4">
+        <button class="btn btn-primary" type="button" (click)="search()">Keresés</button>
+    </div>
+    <div class="col-md-8 d-sm-none d-md-inline-block text-end">
+        <label for="cboPageSize" class="form-label">Találatok száma:</label>
+        <select class="form-select form-select-sm text-center d-inline-block" name="count" [(ngModel)]="searchModel.count">
+            <option value="20" selected>20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>        
+    </div>
+</form>
+<hr>
+<div *ngIf="pager.visible" class="pager text-center">
+    <span class="me-3 cursor-pointer" id="pager-first" *ngIf="pager.first" (click)="pagerFirst()">&laquo;</span>
+    <span class="me-3 cursor-pointer" id="pager-previous" *ngIf="pager.previous" (click)="pagerPrevious()">&lsaquo;</span>
+    <span class="me-3 fw-bold" id="pager-current">{{pager.page}}</span>
+    <span class="me-3 cursor-pointer" id="pager-next" *ngIf="pager.next" (click)="pagerNext()">&rsaquo;</span>
+    <span class="me-3 cursor-pointer" id="pager-last" *ngIf="pager.last" (click)="pagerLast()">&raquo;</span>
+</div>
+<table class="table table-bordered mt-3" id="table-books">
+    <thead>
+        <tr class="text-center">
+            <th>Szerző</th>
+            <th>Könyv címe</th>
+            <th>ISBN</th>
+            <th>Mennyiség</th>
+            <th>Kölcsönözhető</th>
+        </tr>
+    </thead>    
+    <tbody>
+        <tr *ngFor="let book of books">
+            <td>{{book.author}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.isbn}}</td>
+            <td>{{book.volumes}}</td>
+            <td>{{book.freeVolumes}}</td>
+        </tr>
+    </tbody>
+</table>
